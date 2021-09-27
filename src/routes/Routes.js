@@ -1,23 +1,20 @@
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Login from '../pages/Login';
-import Home from '../pages/Home';
-import Exchange from '../pages/Exchange';
-import NotFound from '../pages/NotFound';
-import SystemLayout from '../layouts/SystemLayout';
+import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom';
+import pages from '../configs/Pages';
 
 function Routes() {
+
+    let history = useHistory();
+
     return(
-        <BrowserRouter>
+        <BrowserRouter history={history}>
             <Switch>
-                <Route path='/'>
-                    <Redirect from='/' to='/login' />
-                    <Route exact path='/login' component={Login} />
-                </Route>
-                <SystemLayout>
-                    <Route exact path='/home' component={Home} />
-                    <Route exact path='/exchange' component={Exchange} />
-                </SystemLayout>
-                <Route component={NotFound} />
+                {pages.map((page, index) => (
+                    <Route key={index} exact={page.exact} path={page.path} render={props => (
+                        <page.layout history={props.history}>
+                            <page.component {...props} />
+                        </page.layout>
+                    )} />
+                ))}
             </Switch>
         </BrowserRouter>
     )
