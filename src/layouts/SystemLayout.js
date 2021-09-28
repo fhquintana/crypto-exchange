@@ -1,17 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import AppBarMenu from '../components/AppBarMenu';
 import SideBarMenu from '../components/SideBarMenu';
+import { AppContextProvider } from '../contexts/AppContext';
 
-function SystemLayout(props) {
-
-    const { children } = props;
+function SystemLayout({ children }) {
 
     return(
-        <Fragment>
+        <AppContextProvider>
             <AppBarMenu />
             <SideBarMenu />
             { children }
-        </Fragment>
+        </AppContextProvider>
     )
 }
 
