@@ -6,30 +6,36 @@ import PublicLayout from "../layouts/PublicLayout";
 import SystemLayout from "../layouts/SystemLayout";
 
 const pages = [
-    {
-        exact: true,
-        path: "/login",
-        component: Login,
-        layout: PublicLayout,
-    },
-    {
-        exact: true,
-        path: "/home",
-        component: Home,
-        layout: SystemLayout,
-    },
-    {
-        exact: true,
-        path: "/exchange",
-        component: Exchange,
-        layout: null,
-    },
-    {
-        exact: false,
-        path: "*",
-        component: NotFound,
-        layout: PublicLayout,
-    },
+  {
+    exact: true,
+    path: "/login",
+    component: Login,
+    layout: PublicLayout
+  },
+  {
+    exact: true,
+    path: "/home",
+    component: Home,
+    layout: SystemLayout
+  },
+  {
+    exact: true,
+    path: "/exchange",
+    component: Exchange,
+    layout: SystemLayout
+  },
+  {
+    exact: true,
+    path: "/",
+    component: null,
+    layout: null
+  },
+  {
+    exact: false,
+    path: "*",
+    component: NotFound,
+    layout: PublicLayout
+  },
 ];
 
 export default pages;
