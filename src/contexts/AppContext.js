@@ -5,11 +5,13 @@ const AppContext = React.createContext({});
 export function AppContextProvider({ children }) {
 
     const [sbOpen, setSbOpen] = useState(false);
-    const [accountBoxes, setAccountBoxes] = useState([{}]);
+    const [mvTopAssets, setMvTopAssets] = useState([{}]);
+    const [mvTopAssetsIcons, setMvTopAssetsIcons] = useState([{}]);
 
     const state = {
         sbOpen, setSbOpen,
-        accountBoxes, setAccountBoxes,
+        mvTopAssets, setMvTopAssets,
+        mvTopAssetsIcons, setMvTopAssetsIcons
     };
 
     return (
