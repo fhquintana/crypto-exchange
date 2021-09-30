@@ -1,14 +1,13 @@
 import React from 'react';
+import Container from '@mui/material/Container';
 
-function PublicLayout(props) {
+function PublicLayout({ children }) {
 
-    const { children } = props;
-
-    return(
-        <div>
-            { children }
-        </div>
-    )
+  return(
+    <Container maxWidth="lg" sx={{ padding: '60px 120px !important' }}>
+      { children }
+    </Container>
+  )
 }
 
 export default PublicLayout;
