@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import pages from '../configs/Pages';
+import pages from '../configs/PagesRouting';
 
 function Routes() {
 
