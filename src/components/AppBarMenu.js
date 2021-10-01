@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Cookies from 'universal-cookie';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -8,6 +9,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AppContext from '../contexts/AppContext';
 
 function AppBarMenu() {
+
+  const cookies = new Cookies();
 
   const { setSbOpen } = useContext(AppContext);
 
@@ -21,6 +24,9 @@ function AppBarMenu() {
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           CRYPTO EXCHANGE
+        </Typography>
+        <Typography textAlign="right" variant="subtitle1" component="div" sx={{ flexGrow: 1 }}>
+          {cookies.get('name') + ' ' + cookies.get('lastName')}
         </Typography>
         <IconButton size="large" color="inherit">
           <AccountCircleIcon />

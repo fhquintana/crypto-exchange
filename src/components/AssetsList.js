@@ -1,6 +1,7 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
@@ -13,7 +14,7 @@ import AppContext from '../contexts/AppContext';
 
 function AssetsList({ readOnly }) {
 
-  const { mvTopAssets, setMvTopAssets, mvTopAssetsIcons, setMvTopAssetsIcons, selectedAsset, setSelectedAsset } = useContext(AppContext);
+  const { mvTopAssets, setMvTopAssets, mvTopAssetsIcons, setMvTopAssetsIcons, selectedAsset, setSelectedAsset, setUsdRate } = useContext(AppContext);
 
   function delay(ms) { return new Promise((resolve) => { setTimeout(resolve, ms) }) };
 
@@ -44,7 +45,22 @@ function AssetsList({ readOnly }) {
       })
   };
 
-  const handleCardClick = (index) => { setSelectedAsset(index) };
+  const fetchUSDRate = async (crypto) => {
+    await axios.get(baseUrl + `exchangerate/${crypto}/USD`, { headers: {"X-CoinAPI-Key": coinAPIKey} })
+      .then((response) => { 
+        setUsdRate(response.data.rate.toFixed(6))
+        console.log(response.data) 
+      })
+      .catch((error) => {
+        setUsdRate(0.0) 
+        console.log(error) 
+      })
+  };
+
+  const handleCardClick = (index) => { 
+    fetchUSDRate(mvTopAssets[index].asset_id);
+    setSelectedAsset(index) 
+  };
 
   useEffect(() => { fetchAssets() }, []);
 
@@ -52,7 +68,9 @@ function AssetsList({ readOnly }) {
     <Fragment>
       {mvTopAssets.length === 0 && (
         <Grid item>
-          <CircularProgress sx={{ marginTop: '20px' }} />  
+          <Container sx={{ height: 260, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <CircularProgress />
+          </Container>  
         </Grid>
       )}
       {mvTopAssets.map((coin, index) => (

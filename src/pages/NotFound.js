@@ -8,7 +8,7 @@ import pageNotFound from '../assets/pageNotFound.png';
 
 function NotFound({ history }) {
 
-  const handleBackButtonClick = () => { history.push('/home') }
+  const handleBackButtonClick = () => { history.push('/login') }
     
   return(
     <Grid container justifyContent="center">

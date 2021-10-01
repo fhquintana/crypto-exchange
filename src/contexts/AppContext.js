@@ -11,6 +11,8 @@ export function AppContextProvider({ children }) {
   const [mvTopExchangesIcons, setMvTopExchangesIcons] = useState([]);
   const [selectedAsset, setSelectedAsset] = useState();
   const [selectedExchange, setSelectedExchange] = useState();
+  const [usdRate, setUsdRate] = useState(0.0);
+  const [cryptoAmount, setCryptoAmount] = useState(0.0);
 
   const state = {
     sbOpen, setSbOpen,
@@ -19,7 +21,9 @@ export function AppContextProvider({ children }) {
     mvTopExchanges, setMvTopExchanges,
     mvTopExchangesIcons, setMvTopExchangesIcons,
     selectedAsset, setSelectedAsset,
-    selectedExchange, setSelectedExchange
+    selectedExchange, setSelectedExchange,
+    usdRate, setUsdRate,
+    cryptoAmount, setCryptoAmount
   };
 
   return (
